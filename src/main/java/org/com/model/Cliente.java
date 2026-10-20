@@ -19,4 +19,12 @@ public class Cliente {
             throw new IllegalArgumentException("El ID del cliente es obligatorio.");
         }
     }
+
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
+
+    public String getNombreCompleto() {return nombreCompleto;}
+    public void setNombreCompleto(String nombreCompleto) {this.nombreCompleto = nombreCompleto;}
+
+    public String getIdCliente() {return idCliente;}
 }
