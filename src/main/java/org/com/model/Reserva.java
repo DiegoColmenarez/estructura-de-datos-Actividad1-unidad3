@@ -54,6 +54,14 @@ public class Reserva implements Comparable<Reserva> {
     public NivelPrioridad getPrioridad() { return prioridad; }
 
     @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Reserva reserva = (Reserva) object;
+        return Objects.equals(idReserva, reserva.idReserva);
+    }
+
+    @Override
     public int compareTo(Reserva o) {
         return 0;
     }
