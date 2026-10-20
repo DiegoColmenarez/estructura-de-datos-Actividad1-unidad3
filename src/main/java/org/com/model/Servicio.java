@@ -12,4 +12,9 @@ public record Servicio(String nombreTipo) {
             throw new IllegalArgumentException("El nombre o tipo de servicio no puede ser nulo ni vacío.");
         }
     }
+
+    @Override
+    public String toString() {
+        return nombreTipo;
+    }
 }
