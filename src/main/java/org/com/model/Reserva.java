@@ -62,6 +62,11 @@ public class Reserva implements Comparable<Reserva> {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(idReserva);
+    }
+
+    @Override
     public int compareTo(Reserva o) {
         return 0;
     }
