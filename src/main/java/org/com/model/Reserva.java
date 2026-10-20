@@ -37,6 +37,13 @@ public class Reserva implements Comparable<Reserva> {
             throw new IllegalArgumentException("El código identificador de la reserva no puede estar vacío.");
         }
     }
+
+    public String getIdReserva() { return idReserva; }
+    public Cliente getCliente() { return cliente; }
+    public Servicio getServicio() { return servicio; }
+    public LocalDateTime getFecha() { return fecha; }
+    public NivelPrioridad getPrioridad() { return prioridad; }
+
     @Override
     public int compareTo(Reserva o) {
         return 0;
