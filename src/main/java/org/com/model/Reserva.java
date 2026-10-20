@@ -1,9 +1,18 @@
 package org.com.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Reserva implements Comparable<Reserva> {
+
+    public static final Comparator<Reserva> COMPARADOR_POR_PRIORIDAD = Comparator
+            .comparingInt((Reserva r) -> r.prioridad.getPeso())
+            .thenComparing(r -> r.fecha)
+            .thenComparing(r -> r.idReserva);
+
+    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final String idReserva;
     private final Cliente cliente;
