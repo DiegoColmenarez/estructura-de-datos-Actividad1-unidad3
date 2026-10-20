@@ -32,4 +32,12 @@ public class Cliente {
     public int hashCode() {
         return Objects.hash(idCliente);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Cliente cliente = (Cliente) object;
+        return Objects.equals(idCliente, cliente.idCliente);
+    }
 }
