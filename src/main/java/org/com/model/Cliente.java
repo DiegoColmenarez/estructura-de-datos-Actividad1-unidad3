@@ -27,4 +27,9 @@ public class Cliente {
     public void setNombreCompleto(String nombreCompleto) {this.nombreCompleto = nombreCompleto;}
 
     public String getIdCliente() {return idCliente;}
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCliente);
+    }
 }
