@@ -75,4 +75,16 @@ public class Reserva implements Comparable<Reserva> {
         }
         return this.idReserva.compareTo(otra.idReserva);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Reserva[%s] | Fecha: %s | Prioridad: %-12s | Servicio: %-15s | Cliente: %s (%s)",
+                idReserva,
+                fecha.format(FORMATO_FECHA),
+                prioridad,
+                servicio.nombreTipo(),
+                cliente.getNombreCompleto(),
+                cliente.getIdCliente());
+    }
+
 }
