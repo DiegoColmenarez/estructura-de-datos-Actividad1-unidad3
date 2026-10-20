@@ -67,7 +67,12 @@ public class Reserva implements Comparable<Reserva> {
     }
 
     @Override
-    public int compareTo(Reserva o) {
-        return 0;
+    public int compareTo(Reserva otra) {
+        Objects.requireNonNull(otra, "No se puede comparar con una reserva nula.");
+        int comparacionFecha = this.fecha.compareTo(otra.fecha);
+        if (comparacionFecha != 0) {
+            return comparacionFecha;
+        }
+        return this.idReserva.compareTo(otra.idReserva);
     }
 }
