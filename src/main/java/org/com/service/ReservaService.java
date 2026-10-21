@@ -3,6 +3,7 @@ package org.com.service;
 import org.com.model.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Optional;
 
 public class ReservaService {
@@ -42,4 +43,7 @@ public class ReservaService {
         return reservaRepo.extraerSiguientePrioritaria();
     }
 
+    public Collection<Reserva> obtenerAgendaOrdenada() {
+        return reservaRepo.listarOrdenadasPorFecha();
+    }
 }
