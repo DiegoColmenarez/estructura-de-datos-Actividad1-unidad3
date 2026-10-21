@@ -2,6 +2,7 @@ package org.com.service;
 
 import org.com.model.Cliente;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class ClienteRepository {
@@ -13,5 +14,11 @@ public class ClienteRepository {
 
     public boolean existe(Cliente cliente) {
         return clientes.contains(cliente);
+    }
+
+    public Optional<Cliente> buscarPorId(String idCliente) {
+        return clientes.stream()
+                .filter(c -> c.getIdCliente().equals(idCliente))
+                .findFirst();
     }
 }
