@@ -1,6 +1,8 @@
 package org.com.service;
 
-import org.com.model.Reserva;
+
+import org.com.model.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class ReservaRepository {
@@ -23,6 +25,18 @@ public class ReservaRepository {
         if (reserva == null) return false;
         arbolPorFecha.remove(reserva);
         colaPorPrioridad.remove(reserva);
+        return true;
+    }
+
+    public boolean actualizarFechaYPrioridad(String codigo, LocalDateTime nuevaFecha, NivelPrioridad nuevaPrioridad) {
+        Reserva reserva = mapaPorCodigo.get(codigo);
+        if (reserva == null) return false;
+        arbolPorFecha.remove(reserva);
+        colaPorPrioridad.remove(reserva);
+        reserva.cambiarFecha(nuevaFecha);
+        reserva.cambiarPrioridad(nuevaPrioridad);
+        arbolPorFecha.add(reserva);
+        colaPorPrioridad.offer(reserva);
         return true;
     }
 }
