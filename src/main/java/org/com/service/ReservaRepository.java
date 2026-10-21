@@ -53,4 +53,7 @@ public class ReservaRepository {
         return Optional.ofNullable(mapaPorCodigo.get(codigo));
     }
 
+    public Collection<Reserva> listarOrdenadasPorFecha() {
+        return Collections.unmodifiableSet(arbolPorFecha);
+    }
 }
