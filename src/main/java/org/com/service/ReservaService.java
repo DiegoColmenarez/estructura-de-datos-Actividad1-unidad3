@@ -33,5 +33,9 @@ public class ReservaService {
     public boolean modificarReserva(String codigo, LocalDateTime nuevaFecha, NivelPrioridad nuevaPrioridad) {
         return reservaRepo.actualizarFechaYPrioridad(codigo.trim().toUpperCase(), nuevaFecha, nuevaPrioridad);
     }
-    g
+
+    public boolean cancelarReserva(String codigo) {
+        return reservaRepo.eliminar(codigo.trim().toUpperCase());
+    }
+
 }
