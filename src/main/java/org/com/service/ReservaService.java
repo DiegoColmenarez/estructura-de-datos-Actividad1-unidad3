@@ -1,7 +1,8 @@
 package org.com.service;
 
-import org.com.model.Reserva;
+import org.com.model.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class ReservaService {
@@ -28,4 +29,9 @@ public class ReservaService {
     public Optional<Reserva> buscarPorCodigo(String codigo) {
         return reservaRepo.buscarPorCodigo(codigo.trim().toUpperCase());
     }
+
+    public boolean modificarReserva(String codigo, LocalDateTime nuevaFecha, NivelPrioridad nuevaPrioridad) {
+        return reservaRepo.actualizarFechaYPrioridad(codigo.trim().toUpperCase(), nuevaFecha, nuevaPrioridad);
+    }
+    g
 }
