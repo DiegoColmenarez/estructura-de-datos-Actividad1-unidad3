@@ -2,6 +2,8 @@ package org.com.service;
 
 import org.com.model.Reserva;
 
+import java.util.Optional;
+
 public class ReservaService {
     private final ClienteRepository clienteRepo;
     private final ServicioRepository servicioRepo;
@@ -21,5 +23,9 @@ public class ReservaService {
             throw new IllegalArgumentException("El servicio no existe en el catálogo.");
         }
         return reservaRepo.guardar(nueva);
+    }
+
+    public Optional<Reserva> buscarPorCodigo(String codigo) {
+        return reservaRepo.buscarPorCodigo(codigo.trim().toUpperCase());
     }
 }
