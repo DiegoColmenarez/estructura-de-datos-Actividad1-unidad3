@@ -39,4 +39,13 @@ public class ReservaRepository {
         colaPorPrioridad.offer(reserva);
         return true;
     }
+
+    public Optional<Reserva> extraerSiguientePrioritaria() {
+        Reserva masUrgente = colaPorPrioridad.poll();
+        if (masUrgente != null) {
+            mapaPorCodigo.remove(masUrgente.getIdReserva());
+            arbolPorFecha.remove(masUrgente);
+        }
+        return Optional.ofNullable(masUrgente);
+    }
 }
