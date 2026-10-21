@@ -38,4 +38,8 @@ public class ReservaService {
         return reservaRepo.eliminar(codigo.trim().toUpperCase());
     }
 
+    public Optional<Reserva> procesarSiguienteReserva() {
+        return reservaRepo.extraerSiguientePrioritaria();
+    }
+
 }
