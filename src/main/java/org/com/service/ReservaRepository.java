@@ -48,4 +48,9 @@ public class ReservaRepository {
         }
         return Optional.ofNullable(masUrgente);
     }
+
+    public Optional<Reserva> buscarPorCodigo(String codigo) {
+        return Optional.ofNullable(mapaPorCodigo.get(codigo));
+    }
+
 }
