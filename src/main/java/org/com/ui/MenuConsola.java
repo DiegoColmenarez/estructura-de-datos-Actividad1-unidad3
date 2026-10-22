@@ -1,5 +1,6 @@
 package org.com.ui;
 
+import org.com.model.Cliente;
 import org.com.service.ClienteService;
 import org.com.service.ReservaService;
 import org.com.service.ServicioService;
@@ -31,6 +32,19 @@ public class MenuConsola {
         System.out.println("7. Procesar siguiente Reserva (Atender Prioridad)");
         System.out.println("8. Mostrar Agenda (Ordenada por Fecha)");
         System.out.println("9. Salir");
+    }
+
+    private void registrarCliente() {
+        System.out.println("--- REGISTRAR CLIENTE ---");
+        String id = leerTexto("ID del cliente: ");
+        String nombre = leerTexto("Nombre completo: ");
+        String email = leerTexto("Email: ");
+        Cliente cliente = new Cliente(id, nombre, email);
+        if (clienteService.registrarCliente(cliente)) {
+            System.out.println("Cliente registrado con éxito.");
+        } else {
+            System.out.println("El cliente ya está registrado.");
+        }
     }
 
     private String leerTexto(String mensaje) {
