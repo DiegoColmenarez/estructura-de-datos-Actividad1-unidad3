@@ -32,4 +32,9 @@ public class MenuConsola {
         System.out.println("8. Mostrar Agenda (Ordenada por Fecha)");
         System.out.println("9. Salir");
     }
+
+    private String leerTexto(String mensaje) {
+        System.out.print(mensaje);
+        return scanner.nextLine();
+    }
 }
