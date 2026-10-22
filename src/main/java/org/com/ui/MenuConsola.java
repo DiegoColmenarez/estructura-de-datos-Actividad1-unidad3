@@ -98,6 +98,24 @@ public class MenuConsola {
         }
     }
 
+    private void modificarReserva() {
+        System.out.println("--- MODIFICAR RESERVA ---");
+        String codigo = leerTexto("Ingrese el código de la reserva a modificar: ");
+        Optional<Reserva> reservaActual = reservaService.buscarPorCodigo(codigo);
+        if (reservaActual.isEmpty()) {
+            System.out.println("No se encontró ninguna reserva con ese código.");
+            return;
+        }
+        System.out.println("Reserva actual: " + reservaActual.get());
+        LocalDateTime nuevaFecha = leerFecha("Nueva fecha y hora (yyyy-MM-dd HH:mm): ");
+        NivelPrioridad nuevaPrioridad = leerPrioridad();
+        if (reservaService.modificarReserva(codigo, nuevaFecha, nuevaPrioridad)) {
+            System.out.println("Reserva modificada exitosamente.");
+        } else {
+            System.out.println("Error al modificar la reserva.");
+        }
+    }
+
     private String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine();
