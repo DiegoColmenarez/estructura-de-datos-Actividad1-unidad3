@@ -6,6 +6,7 @@ import org.com.service.ClienteService;
 import org.com.service.ReservaService;
 import org.com.service.ServicioService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuConsola {
@@ -56,6 +57,15 @@ public class MenuConsola {
             System.out.println("Servicio registrado con éxito.");
         } else {
             System.out.println("El servicio ya existe.");
+        }
+    }
+
+    private void crearReserva() {
+        System.out.println("--- CREAR RESERVA ---");
+        String idCliente = leerTexto("ID del Cliente: ");
+        Optional<Cliente> clienteOpt = clienteService.buscarPorId(idCliente);
+        if (clienteOpt.isEmpty()) {
+            System.out.println("Cliente no encontrado. Debe registrarlo primero.");
         }
     }
 
