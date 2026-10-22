@@ -97,4 +97,17 @@ public class MenuConsola {
             }
         }
     }
+
+    private NivelPrioridad leerPrioridad() {
+        while (true) {
+            System.out.println("Seleccione prioridad: 1. VIP_ESPECIAL, 2. URGENTE, 3. NORMAL");
+            int op = leerEntero("Opción: ");
+            switch (op) {
+                case 1: return NivelPrioridad.VIP_ESPECIAL;
+                case 2: return NivelPrioridad.URGENTE;
+                case 3: return NivelPrioridad.NORMAL;
+                default: System.out.println("Opción no válida.");
+            }
+        }
+    }
 }
