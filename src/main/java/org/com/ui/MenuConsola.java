@@ -1,6 +1,24 @@
 package org.com.ui;
 
+import org.com.service.ClienteService;
+import org.com.service.ReservaService;
+import org.com.service.ServicioService;
+
+import java.util.Scanner;
+
 public class MenuConsola {
+
+    private final ClienteService clienteService;
+    private final ServicioService servicioService;
+    private final ReservaService reservaService;
+    private final Scanner scanner;
+
+    public MenuConsola(ClienteService clienteService, ServicioService servicioService, ReservaService reservaService) {
+        this.clienteService = clienteService;
+        this.servicioService = servicioService;
+        this.reservaService = reservaService;
+        this.scanner = new Scanner(System.in);
+    }
 
     private void mostrarOpciones() {
         System.out.println("=== GESTIÓN DE RESERVAS ===");
