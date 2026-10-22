@@ -25,6 +25,33 @@ public class MenuConsola {
         this.scanner = new Scanner(System.in);
     }
 
+    public void iniciar() {
+        boolean salir = false;
+        while (!salir) {
+            mostrarOpciones();
+            int opcion = leerEntero("Seleccione una opción: ");
+
+            try {
+                switch (opcion) {
+                    case 1 -> registrarCliente();
+                    case 2 -> registrarServicio();
+                    case 3 -> crearReserva();
+                    case 4 -> buscarReserva();
+                    case 5 -> modificarReserva();
+                    case 6 -> cancelarReserva();
+                    case 7 -> procesarSiguienteReserva();
+                    case 8 -> mostrarAgenda();
+                    case 9 -> salir = true;
+                    default -> System.out.println("Opción no válida. Intente de nuevo.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            System.out.println();
+        }
+        System.out.println("¡Hasta luego!");
+    }
+
     private void mostrarOpciones() {
         System.out.println("=== GESTIÓN DE RESERVAS ===");
         System.out.println("1. Registrar Cliente");
