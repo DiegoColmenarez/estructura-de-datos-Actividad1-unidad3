@@ -126,6 +126,15 @@ public class MenuConsola {
         }
     }
 
+    private void procesarSiguienteReserva() {
+        Optional<Reserva> reservaAtendida = reservaService.procesarSiguienteReserva();
+        if (reservaAtendida.isPresent()) {
+            System.out.println("Procesando reserva: " + reservaAtendida.get());
+        } else {
+            System.out.println("No hay reservas pendientes por procesar.");
+        }
+    }
+
     private String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine();
