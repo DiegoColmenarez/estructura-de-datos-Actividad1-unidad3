@@ -88,6 +88,16 @@ public class MenuConsola {
         }
     }
 
+    private void buscarReserva() {
+        String codigo = leerTexto("Ingrese el código de la reserva a buscar: ");
+        Optional<Reserva> reserva = reservaService.buscarPorCodigo(codigo);
+        if (reserva.isPresent()) {
+            System.out.println("Reserva encontrada: " + reserva.get());
+        } else {
+            System.out.println("No se encontró ninguna reserva con el código: " + codigo);
+        }
+    }
+
     private String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine();
