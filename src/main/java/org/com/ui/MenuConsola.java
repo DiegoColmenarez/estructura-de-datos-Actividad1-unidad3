@@ -73,4 +73,15 @@ public class MenuConsola {
         System.out.print(mensaje);
         return scanner.nextLine();
     }
+
+    private int leerEntero(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingrese un número válido.");
+            }
+        }
+    }
 }
