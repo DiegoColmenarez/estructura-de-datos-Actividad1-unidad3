@@ -1,12 +1,12 @@
 package org.com.ui;
 
-import org.com.model.Cliente;
-import org.com.model.Servicio;
+import org.com.model.*;
 import org.com.service.ClienteService;
 import org.com.service.ReservaService;
 import org.com.service.ServicioService;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -82,6 +82,18 @@ public class MenuConsola {
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Por favor, ingrese un número válido.");
+            }
+        }
+    }
+
+    private LocalDateTime leerFecha(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String input = scanner.nextLine();
+            try {
+                return LocalDateTime.parse(input, Reserva.FORMATO_FECHA);
+            } catch (DateTimeParseException e) {
+                System.out.println("Formato inválido. Use el formato yyyy-MM-dd HH:mm.");
             }
         }
     }
