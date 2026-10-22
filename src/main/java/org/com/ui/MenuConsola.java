@@ -7,6 +7,7 @@ import org.com.service.ServicioService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -132,6 +133,18 @@ public class MenuConsola {
             System.out.println("Procesando reserva: " + reservaAtendida.get());
         } else {
             System.out.println("No hay reservas pendientes por procesar.");
+        }
+    }
+
+    private void mostrarAgenda() {
+        Collection<Reserva> agenda = reservaService.obtenerAgendaOrdenada();
+        if (agenda.isEmpty()) {
+            System.out.println("La agenda está vacía.");
+        } else {
+            System.out.println("--- AGENDA ORDENADA POR FECHA ---");
+            for (Reserva r : agenda) {
+                System.out.println(r);
+            }
         }
     }
 
