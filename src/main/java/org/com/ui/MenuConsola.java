@@ -1,6 +1,7 @@
 package org.com.ui;
 
 import org.com.model.Cliente;
+import org.com.model.Servicio;
 import org.com.service.ClienteService;
 import org.com.service.ReservaService;
 import org.com.service.ServicioService;
@@ -44,6 +45,17 @@ public class MenuConsola {
             System.out.println("Cliente registrado con éxito.");
         } else {
             System.out.println("El cliente ya está registrado.");
+        }
+    }
+
+    private void registrarServicio() {
+        System.out.println("--- REGISTRAR SERVICIO ---");
+        String nombre = leerTexto("Nombre del servicio: ");
+        Servicio servicio = new Servicio(nombre);
+        if (servicioService.registrarServicio(servicio)) {
+            System.out.println("Servicio registrado con éxito.");
+        } else {
+            System.out.println("El servicio ya existe.");
         }
     }
 
