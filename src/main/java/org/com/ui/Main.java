@@ -74,4 +74,19 @@ public class Main {
         rs.crearReserva(new Reserva("RES-015",
                 LocalDateTime.of(2026, 10, 31, 16, 0), s5, c3, NivelPrioridad.NORMAL));
     }
+
+    static void main() {
+        ClienteRepository clienteRepo = new ClienteRepository();
+        ServicioRepository servicioRepo = new ServicioRepository();
+        ReservaRepository reservaRepo = new ReservaRepository();
+
+        ClienteService clienteService = new ClienteService(clienteRepo);
+        ServicioService servicioService = new ServicioService(servicioRepo);
+        ReservaService reservaService = new ReservaService(clienteRepo, servicioRepo, reservaRepo);
+
+        cargarDatosIniciales(clienteService, servicioService, reservaService);
+
+        MenuConsola menu = new MenuConsola(clienteService, servicioService, reservaService);
+        menu.iniciar();
+    }
 }
