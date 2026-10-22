@@ -116,6 +116,16 @@ public class MenuConsola {
         }
     }
 
+    private void cancelarReserva() {
+        System.out.println("--- CANCELAR RESERVA ---");
+        String codigo = leerTexto("Ingrese el código de la reserva a cancelar: ");
+        if (reservaService.cancelarReserva(codigo)) {
+            System.out.println("Reserva cancelada exitosamente.");
+        } else {
+            System.out.println("No se encontró la reserva o no se pudo cancelar.");
+        }
+    }
+
     private String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine();
