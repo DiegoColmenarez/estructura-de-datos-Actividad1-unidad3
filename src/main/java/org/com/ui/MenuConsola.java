@@ -67,6 +67,24 @@ public class MenuConsola {
         Optional<Cliente> clienteOpt = clienteService.buscarPorId(idCliente);
         if (clienteOpt.isEmpty()) {
             System.out.println("Cliente no encontrado. Debe registrarlo primero.");
+            return;
+        }
+        String nombreServicio = leerTexto("Nombre del Servicio: ");
+        Servicio servicio = new Servicio(nombreServicio);
+        boolean servicioExiste = servicioService.listarCatalogo().stream()
+                .anyMatch(s -> s.nombreTipo().equals(servicio.nombreTipo()));
+        if (!servicioExiste) {
+            System.out.println("El servicio no está en el catálogo. Regístrelo primero.");
+            return;
+        }
+        String idReserva = leerTexto("Código único de la reserva: ");
+        LocalDateTime fecha = leerFecha("Fecha y hora (yyyy-MM-dd HH:mm): ");
+        NivelPrioridad prioridad = leerPrioridad();
+        Reserva reserva = new Reserva(idReserva, fecha, servicio, clienteOpt.get(), prioridad);
+        if (reservaService.crearReserva(reserva)) {
+            System.out.println("Reserva creada exitosamente.");
+        } else {
+            System.out.println("Error: Ya existe una reserva con ese código.");
         }
     }
 
