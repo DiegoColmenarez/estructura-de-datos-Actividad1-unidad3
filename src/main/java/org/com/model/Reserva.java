@@ -1,0 +1,90 @@
+package org.com.model;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Objects;
+
+public class Reserva implements Comparable<Reserva> {
+
+    public static final Comparator<Reserva> COMPARADOR_POR_PRIORIDAD = Comparator
+            .comparingInt((Reserva r) -> r.prioridad.getPeso())
+            .thenComparing(r -> r.fecha)
+            .thenComparing(r -> r.idReserva);
+
+    public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private final String idReserva;
+    private final Cliente cliente;
+    private Servicio servicio;
+    private LocalDateTime fecha;
+    private NivelPrioridad prioridad;
+
+    public Reserva(String idReserva, LocalDateTime fecha, Servicio servicio, Cliente cliente, NivelPrioridad prioridad) {
+        controlFallos(idReserva);
+        this.idReserva = idReserva.trim().toUpperCase();
+        this.cliente = Objects.requireNonNull(cliente, "El cliente asociado a la reserva no puede ser nulo.");
+        this.cambiarFecha(fecha);
+        this.cambiarServicio(servicio);
+        this.cambiarPrioridad(prioridad);
+    }
+
+    public void cambiarFecha(LocalDateTime nuevaFecha) {
+        this.fecha = Objects.requireNonNull(nuevaFecha, "La fecha de la reserva no puede ser nula.");
+    }
+
+    public void cambiarServicio(Servicio nuevoServicio) {
+        this.servicio = Objects.requireNonNull(nuevoServicio, "El servicio de la reserva no puede ser nulo.");
+    }
+
+    public void cambiarPrioridad(NivelPrioridad nuevaPrioridad) {
+        this.prioridad = Objects.requireNonNull(nuevaPrioridad, "El nivel de prioridad no puede ser nulo.");
+    }
+
+    private void controlFallos(String idReserva){
+        if (idReserva == null || idReserva.isBlank()) {
+            throw new IllegalArgumentException("El código identificador de la reserva no puede estar vacío.");
+        }
+    }
+
+    public String getIdReserva() { return idReserva; }
+    public Cliente getCliente() { return cliente; }
+    public Servicio getServicio() { return servicio; }
+    public LocalDateTime getFecha() { return fecha; }
+    public NivelPrioridad getPrioridad() { return prioridad; }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Reserva reserva = (Reserva) object;
+        return Objects.equals(idReserva, reserva.idReserva);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idReserva);
+    }
+
+    @Override
+    public int compareTo(Reserva otra) {
+        Objects.requireNonNull(otra, "No se puede comparar con una reserva nula.");
+        int comparacionFecha = this.fecha.compareTo(otra.fecha);
+        if (comparacionFecha != 0) {
+            return comparacionFecha;
+        }
+        return this.idReserva.compareTo(otra.idReserva);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Reserva[%s] | Fecha: %s | Prioridad: %-12s | Servicio: %-15s | Cliente: %s (%s)",
+                idReserva,
+                fecha.format(FORMATO_FECHA),
+                prioridad,
+                servicio.nombreTipo(),
+                cliente.getNombreCompleto(),
+                cliente.getIdCliente());
+    }
+
+}
