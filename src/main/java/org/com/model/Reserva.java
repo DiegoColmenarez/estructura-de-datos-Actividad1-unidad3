@@ -12,7 +12,7 @@ public class Reserva implements Comparable<Reserva> {
             .thenComparing(r -> r.fecha)
             .thenComparing(r -> r.idReserva);
 
-    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final String idReserva;
     private final Cliente cliente;
